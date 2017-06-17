@@ -1,0 +1,34 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'io.opentracing.contrib', name: 'opentracing-spring-web', version: '0.0.5'
+	compile group: 'io.zipkin.reporter', name: 'zipkin-reporter', version: '0.10.0'
+	compile group: 'io.zipkin.reporter', name: 'zipkin-sender-okhttp3', version: '0.10.0'
+	compile group: 'io.opentracing.brave', name: 'brave-opentracing', version: '0.20.0'
+	compile 'com.uber.jaeger:jaeger-zipkin:0.19.0'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
